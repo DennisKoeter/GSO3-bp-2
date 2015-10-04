@@ -5,6 +5,7 @@
  */
 package fontys.time;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -25,6 +26,7 @@ public class Appointment{
     public Appointment(String subject, ITimeSpan timespan){
         this.subject = subject;
         this.timespan = timespan;
+        this.contacts = new ArrayList<Contact>();
     }
     
     /**
@@ -70,6 +72,7 @@ public class Appointment{
      * @param c contact to be removed
      */
     public void removeContact(Contact c){
+        c.removeAppointment(this);
         this.contacts.remove(c);
     }
 }
