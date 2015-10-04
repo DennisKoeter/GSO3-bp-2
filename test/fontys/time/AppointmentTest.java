@@ -117,7 +117,8 @@ public class AppointmentTest {
     
     @Test
     public void testRemoveContact(){
-        a.addContact(c1);
+        assertTrue(a.addContact(c1));
+        assertFalse(a.addContact(c1));
         a.addContact(c2);
         
         a.removeContact(c1);
@@ -130,6 +131,6 @@ public class AppointmentTest {
             if(i.next() == c1) j++;
         }
         
-        assertTrue("Contacts don't match", j == 1);
+        assertTrue("Contacts don't match", j == 0);
     }
 }

@@ -59,12 +59,11 @@ public class Appointment{
      * @return true if successful, false if not
      */
     public boolean addContact(Contact c){
-        try {
-            if(c.addAppointment(this)) this.contacts.add(c);
-            else return false;
-        }
-        catch(Exception e) {return false;}
-        return true;
+            if(c.addAppointment(this)) {
+                this.contacts.add(c);
+                return true;
+            }
+            return false;  
     }
     
     /**

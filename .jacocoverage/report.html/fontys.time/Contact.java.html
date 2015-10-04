@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Contact.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;UnittestenTime&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">fontys.time</a> &gt; <span class="el_source">Contact.java</span></div><h1>Contact.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package fontys.time;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+/**
+ *
+ * @author cas
+ */
+public class Contact {
+    
+    private String name;
+    private List&lt;Appointment&gt; agenda;
+    /**
+     * Create a new Contact
+     * @param name must be at least one character long
+     * @throws IllegalArgumentException when name is null or empty
+     */
+<span class="fc" id="L25">    public Contact(String name) {</span>
+<span class="pc bpc" id="L26" title="2 of 4 branches missed.">        if(name == null || name.length() &lt; 1) throw new IllegalArgumentException(&quot;Name cannot be empty&quot;);</span>
+        
+<span class="fc" id="L28">        this.name = name;</span>
+        
+<span class="fc" id="L30">        agenda = new ArrayList&lt;Appointment&gt;();</span>
+<span class="fc" id="L31">    }</span>
+    
+    /**
+     * Get the name of this contact
+     * @return contact name
+     */
+    public String getName() {
+<span class="nc" id="L38">        return name;</span>
+    }
+    
+    /**
+     * Add appointment for this contact
+     * @param a Appointment object
+     * @return boolean - true if success, false if not
+     */
+    boolean addAppointment(Appointment a) {
+<span class="fc" id="L47">        boolean allowed = true;</span>
+        
+<span class="fc bfc" id="L49" title="All 2 branches covered.">        for(Appointment i : agenda){</span>
+<span class="pc bpc" id="L50" title="1 of 2 branches missed.">            if(i.getTimespan().unionWith(a.getTimespan()) != null) allowed = false;</span>
+<span class="fc" id="L51">        }</span>
+        
+<span class="fc bfc" id="L53" title="All 2 branches covered.">        if(allowed) agenda.add(a);</span>
+<span class="fc" id="L54">        return allowed;</span>
+    }
+    
+    
+    /**
+     * Remove appointment for this contact
+     * @param a Appointment to remove
+     * @throws InvalidArgumentException if no appointment was found
+     */
+    void removeAppointment(Appointment a) {
+<span class="fc" id="L64">        boolean done = false;</span>
+<span class="fc" id="L65">        int removeIndex = 0;</span>
+        
+<span class="fc" id="L67">        int counter = 0;</span>
+<span class="pc bpc" id="L68" title="1 of 2 branches missed.">        for(Appointment i : agenda) {</span>
+<span class="pc bpc" id="L69" title="1 of 2 branches missed.">            if(i.getTimespan().unionWith(a.getTimespan()) != null) {</span>
+<span class="fc" id="L70">                removeIndex = counter;</span>
+<span class="fc" id="L71">                done = true;</span>
+<span class="fc" id="L72">                break;</span>
+            }
+<span class="nc" id="L74">            counter++;</span>
+<span class="nc" id="L75">        }</span>
+        
+<span class="pc bpc" id="L77" title="1 of 2 branches missed.">        if(done) {</span>
+<span class="fc" id="L78">            agenda.remove(removeIndex);</span>
+        }
+        else {
+<span class="nc" id="L81">            throw new IllegalArgumentException(&quot;Given appointment &quot; + a +  &quot; is not in this contact's agenda&quot;);</span>
+        }
+        
+<span class="fc" id="L84">    }</span>
+    
+    /**
+     * Get a list of all appointments for this contact
+     * @return Iterator of all Appointments for this contact
+     */
+    public Iterator&lt;Appointment&gt; appointments() {
+<span class="nc" id="L91">        return agenda.iterator();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>
