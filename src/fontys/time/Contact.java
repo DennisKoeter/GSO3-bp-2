@@ -15,7 +15,7 @@ import java.util.List;
 public class Contact {
     
     private String name;
-    private List<Appointment> appointments;
+    private List<Appointment> agenda;
     /**
      * Create a new Contact
      * @param name must be at least one character long
@@ -28,7 +28,8 @@ public class Contact {
     }
     
     /**
-     * @returns name of the contact
+     * Get the name of this contact
+     * @return contact name
      */
     public String getName() {
         return name;
@@ -37,12 +38,17 @@ public class Contact {
     /**
      * Add appointment for this contact
      * @param a Appointment object
-     * @returns boolean - true if success, false if not
+     * @return boolean - true if success, false if not
      */
     boolean addAppointment(Appointment a) {
-        for(Appointment i : appointments){
-            
+        boolean allowed = true;
+        
+        for(Appointment i : agenda){
+            if(i.getTimespan().unionWith(a.getTimespan()) != null) allowed = false;
         }
+        
+        if(allowed) agenda.add(a);
+        return allowed;
     }
     
     
@@ -52,14 +58,33 @@ public class Contact {
      * @throws InvalidArgumentException if no appointment was found
      */
     void removeAppointment(Appointment a) {
-        throw new UnsupportedOperationException();
+        boolean done = false;
+        int removeIndex = 0;
+        
+        int counter = 0;
+        for(Appointment i : agenda) {
+            if(i.getTimespan().unionWith(a.getTimespan()) != null) {
+                removeIndex = counter;
+                done = true;
+                break;
+            }
+            counter++;
+        }
+        
+        if(done) {
+            agenda.remove(removeIndex);
+        }
+        else {
+            throw new IllegalArgumentException("Given appointment " + a +  " is not in this contact's agenda");
+        }
+        
     }
     
     /**
      * Get a list of all appointments for this contact
-     * @returns Iterator of all Appointments for this contact
+     * @return Iterator of all Appointments for this contact
      */
     public Iterator<Appointment> appointments() {
-        throw new UnsupportedOperationException();
+        return agenda.iterator();
     }
 }
