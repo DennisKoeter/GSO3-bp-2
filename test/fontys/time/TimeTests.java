@@ -122,7 +122,21 @@ public class TimeTests {
     @Test
     public void testDayInWeek() {
         //@return the concerning day in the week of this time
-        assertEquals("getDayInWeek() failed", DayInWeek.THU, t.getDayInWeek());
+        Time mon = new Time(2015,10,5,1,1);
+        Time tue = new Time(2015,10,6,1,1);
+        Time wed = new Time(2015,10,7,1,1);
+        Time thu = new Time(2015,10,8,1,1);
+        Time fri = new Time(2015,10,9,1,1);
+        Time sat = new Time(2015,10,10,1,1);
+        Time sun = new Time(2015,10,11,1,1);
+        
+        assertEquals("getDayInWeek() failed", DayInWeek.MON, mon.getDayInWeek());
+        assertEquals("getDayInWeek() failed", DayInWeek.TUE, tue.getDayInWeek());
+        assertEquals("getDayInWeek() failed", DayInWeek.WED, wed.getDayInWeek());
+        assertEquals("getDayInWeek() failed", DayInWeek.THU, thu.getDayInWeek());
+        assertEquals("getDayInWeek() failed", DayInWeek.FRI, fri.getDayInWeek());
+        assertEquals("getDayInWeek() failed", DayInWeek.SAT, sat.getDayInWeek());
+        assertEquals("getDayInWeek() failed", DayInWeek.SUN, sun.getDayInWeek());
     }
     
     @Test
@@ -158,7 +172,7 @@ public class TimeTests {
         assertEquals("Minutes are not equal", expected.getMinutes(), actual.getMinutes());
         
         // Subtract one hour
-        expected = new Time(2014,12,31,23,1);
+        expected = new Time(2015,1,1,0,1);
         actual = (Time)t.plus(-60);
         assertEquals("Years are not equal", expected.getYear(), actual.getYear());
         assertEquals("Months are not equal", expected.getMonth(), actual.getMonth());
@@ -170,7 +184,6 @@ public class TimeTests {
     @Test
     public void testDifference() {
         // @return the difference between this time and [time] expressed in minutes
-        int expected;
         
         Time a = new Time(2015,1,1,1,2);    //   1 minute
         Time b = new Time(2015,1,1,2,1);    //  60 minutes
@@ -189,8 +202,8 @@ public class TimeTests {
         Time earlier = new Time(2014,1,1,1,1);
         Time later = new Time(2016,1,1,1,1);
         
-        assertEquals(0,  t.compareTo(same));
         assertEquals(-1, t.compareTo(earlier));
+        assertEquals(0,  t.compareTo(same));
         assertEquals(1,  t.compareTo(later));
     }
 }
