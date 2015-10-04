@@ -87,7 +87,7 @@ public class TimeSpan2 implements ITimeSpan {
      */
     @Override
     public void move(int minutes) {
-        bt.plus(minutes);
+        bt = bt.plus(minutes);
     }
 
     /**
@@ -112,10 +112,10 @@ public class TimeSpan2 implements ITimeSpan {
      */
     @Override
     public boolean isPartOf(ITimeSpan timeSpan) {        
-        return(    bt.compareTo(timeSpan.getBeginTime()) == -1 
-                && bt.compareTo(timeSpan.getEndTime())   ==  1 
-                && bt.plus((int)duration).compareTo(timeSpan.getBeginTime()) == -1 
-                && bt.plus((int)duration).compareTo(timeSpan.getEndTime())   ==  1);
+        return(    bt.compareTo(timeSpan.getBeginTime()) <= 0 
+                && bt.compareTo(timeSpan.getEndTime())   >=  0 
+                && bt.plus((int)duration).compareTo(timeSpan.getBeginTime()) <= 0 
+                && bt.plus((int)duration).compareTo(timeSpan.getEndTime())   >= 0);
     }
 
     /**

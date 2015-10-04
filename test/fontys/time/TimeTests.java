@@ -140,7 +140,7 @@ public class TimeTests {
     }
     
     @Test
-    public void testPlus() {
+    public void testPlus1() {
         // @param minutes (a negative value is allowed)
         // @return  this time plus minutes
         
@@ -152,28 +152,37 @@ public class TimeTests {
         assertEquals("Days are not equal", expected.getDay(), actual.getDay());
         assertEquals("Hours are not equal", expected.getHours(), actual.getHours());
         assertEquals("Minutes are not equal", expected.getMinutes(), actual.getMinutes());
-        
+    }
+    
+    @Test
+    public void testPlus2() {
         // Add one hour
-        expected = new Time(2015,1,1,2,1);
-        actual = (Time)t.plus(60);
+        Time expected = new Time(2015,1,1,2,1);
+        Time actual = (Time)t.plus(60);
         assertEquals("Years are not equal", expected.getYear(), actual.getYear());
         assertEquals("Months are not equal", expected.getMonth(), actual.getMonth());
         assertEquals("Days are not equal", expected.getDay(), actual.getDay());
         assertEquals("Hours are not equal", expected.getHours(), actual.getHours());
         assertEquals("Minutes are not equal", expected.getMinutes(), actual.getMinutes());
-        
+    }
+    
+    @Test
+    public void testPlus3() {
         // Subtract one minute
-        expected = new Time(2015,1,1,1,0);
-        actual = (Time)t.plus(-1);
+        Time expected = new Time(2015,1,1,1,0);
+        Time actual = (Time)t.plus(-1);
         assertEquals("Years are not equal", expected.getYear(), actual.getYear());
         assertEquals("Months are not equal", expected.getMonth(), actual.getMonth());
         assertEquals("Days are not equal", expected.getDay(), actual.getDay());
         assertEquals("Hours are not equal", expected.getHours(), actual.getHours());
         assertEquals("Minutes are not equal", expected.getMinutes(), actual.getMinutes());
-        
+    }
+    
+    @Test
+    public void testPlus4() {
         // Subtract one hour
-        expected = new Time(2015,1,1,0,1);
-        actual = (Time)t.plus(-60);
+        Time expected = new Time(2015,1,1,0,1);
+        Time actual = (Time)t.plus(-60);
         assertEquals("Years are not equal", expected.getYear(), actual.getYear());
         assertEquals("Months are not equal", expected.getMonth(), actual.getMonth());
         assertEquals("Days are not equal", expected.getDay(), actual.getDay());

@@ -98,9 +98,9 @@ public class Time implements ITime {
 
     @Override
     public ITime plus(int minutes) {
-        Time time = new Time(this);
-        time.gc.add(GregorianCalendar.MINUTE, minutes);
-        return time;
+        Time t = new Time(this);
+        t.gc.add(GregorianCalendar.MINUTE, minutes);
+        return t;
     }
 
     @Override
