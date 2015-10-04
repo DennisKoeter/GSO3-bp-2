@@ -6,6 +6,7 @@
 package fontys.time;
 
 import java.util.Iterator;
+import java.util.List;
 
 /**
  *
@@ -14,19 +15,23 @@ import java.util.Iterator;
 public class Contact {
     
     private String name;
+    private List<Appointment> appointments;
     /**
      * Create a new Contact
      * @param name must be at least one character long
+     * @throws IllegalArgumentException when name is null or empty
      */
     public Contact(String name) {
+        if(name == null || name.length() < 1) throw new IllegalArgumentException("Name cannot be empty");
         
+        this.name = name;
     }
     
     /**
      * @returns name of the contact
      */
     public String getName() {
-        throw new UnsupportedOperationException();
+        return name;
     }
     
     /**
@@ -35,7 +40,9 @@ public class Contact {
      * @returns boolean - true if success, false if not
      */
     boolean addAppointment(Appointment a) {
-        throw new UnsupportedOperationException();
+        for(Appointment i : appointments){
+            
+        }
     }
     
     
