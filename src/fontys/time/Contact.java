@@ -13,9 +13,10 @@ import java.util.Iterator;
  */
 public class Contact {
     
+    private String name;
     /**
      * Create a new Contact
-     * @param name 
+     * @param name must be at least one character long
      */
     public Contact(String name) {
         
@@ -24,18 +25,18 @@ public class Contact {
     /**
      * @returns name of the contact
      */
-    /*public String getName() {
+    public String getName() {
         throw new UnsupportedOperationException();
-    }*/
+    }
     
     /**
      * Add appointment for this contact
      * @param a Appointment object
      * @returns boolean - true if success, false if not
      */
-    /*boolean addAppointment(Appointment a) {
+    boolean addAppointment(Appointment a) {
         throw new UnsupportedOperationException();
-    }*/
+    }
     
     
     /**
@@ -43,15 +44,15 @@ public class Contact {
      * @param a Appointment to remove
      * @throws InvalidArgumentException if no appointment was found
      */
-    /*void removeAppointment(Appointment a) {
+    void removeAppointment(Appointment a) {
         throw new UnsupportedOperationException();
-    }*/
+    }
     
     /**
      * Get a list of all appointments for this contact
      * @returns Iterator of all Appointments for this contact
      */
-    /*public Iterator<Appointment> appointments() {
+    public Iterator<Appointment> appointments() {
         throw new UnsupportedOperationException();
-    }*/
+    }
 }
