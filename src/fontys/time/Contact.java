@@ -5,6 +5,7 @@
  */
 package fontys.time;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -25,6 +26,8 @@ public class Contact {
         if(name == null || name.length() < 1) throw new IllegalArgumentException("Name cannot be empty");
         
         this.name = name;
+        
+        agenda = new ArrayList<Appointment>();
     }
     
     /**
