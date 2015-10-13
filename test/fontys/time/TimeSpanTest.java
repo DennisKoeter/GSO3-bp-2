@@ -64,6 +64,13 @@ public class TimeSpanTest {
         TimeSpan2 t = new TimeSpan2(bt, et);
     }
     
+    @Test (expected=IllegalArgumentException.class)
+    public void testWrongConstructor(){
+        TimeSpan2 t = new TimeSpan2(et, bt);
+        TimeSpan2 q = new TimeSpan2(et, et);
+        fail("constructor doesn't catch errors");
+    }
+    
     @Test
     public void testGetBeginTime(){
         x = new Time(2000,1,1,1,1);
@@ -109,6 +116,12 @@ public class TimeSpanTest {
         assertEquals("Minutes are not equal", y.getMinutes(), x.getMinutes());
     }
     
+    @Test (expected=IllegalArgumentException.class)
+    public void testSetEndTimeArgumentsException(){
+        t.setEndTime(bt);
+        fail("no exception thrown");
+    }
+    
     @Test
     public void testSetBeginTime(){
         x = new Time(1985,1,1,1,1);
@@ -120,6 +133,12 @@ public class TimeSpanTest {
         assertEquals("Days are not equal", y.getDay(), x.getDay());
         assertEquals("Hours are not equal", y.getHours(), x.getHours());
         assertEquals("Minutes are not equal", y.getMinutes(), x.getMinutes());
+    }
+    
+    @Test (expected=IllegalArgumentException.class)
+    public void testSetBeginTimeArgumentsException(){
+        t.setBeginTime(et);
+        fail("no exception thrown");
     }
     
     @Test
@@ -157,6 +176,17 @@ public class TimeSpanTest {
         assertEquals("Minutes are not equal", y.getMinutes(), x.getMinutes());
     }
     
+    @Test (expected=IllegalArgumentException.class)
+    public void testChangeLengthWithArgumentsException(){
+        t.changeLengthWith(-10000);
+        fail("no exception thrown");
+    }
+    @Test (expected=IllegalArgumentException.class)
+    public void testChangeLengthWithArgumentsException2(){
+        t.changeLengthWith(t.length() * -1);
+        fail("no exception thrown");
+    }
+    
     @Test
     public void testIsPartOf(){
         t2 = new TimeSpan2(new Time(2001,1,1,1,1), new Time(2014,1,1,1,1));
@@ -185,6 +215,12 @@ public class TimeSpanTest {
         assertEquals("Days are not equal", y.getDay(), x.getDay());
         assertEquals("Hours are not equal", y.getHours(), x.getHours());
         assertEquals("Minutes are not equal", y.getMinutes(), x.getMinutes());
+        
+        TimeSpan2 t5 = new TimeSpan2(new Time(2014,1,1,1,1), new Time(2016,1,1,1,1));
+        TimeSpan2 t6 = new TimeSpan2(new Time(2018,1,1,1,1), new Time(2020,1,1,1,1));
+        
+        assertNull("null not returned", (TimeSpan2)t5.unionWith(t6));
+        assertNull("null not returned", (TimeSpan2)t6.unionWith(t5));
     }
     
     @Test
@@ -209,5 +245,11 @@ public class TimeSpanTest {
         assertEquals("Days are not equal", y.getDay(), x.getDay());
         assertEquals("Hours are not equal", y.getHours(), x.getHours());
         assertEquals("Minutes are not equal", y.getMinutes(), x.getMinutes());
+        
+        TimeSpan2 t5 = new TimeSpan2(new Time(2014,1,1,1,1), new Time(2016,1,1,1,1));
+        TimeSpan2 t6 = new TimeSpan2(new Time(2018,1,1,1,1), new Time(2020,1,1,1,1));
+        
+        assertNull("null not returned", (TimeSpan2)t5.intersectionWith(t6));
+        assertNull("null not returned", (TimeSpan2)t6.intersectionWith(t5));
     }
 }
