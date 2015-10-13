@@ -10,8 +10,6 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import java.util.GregorianCalendar;
-import java.util.Calendar;
 import static org.junit.Assert.*;
 
 /**
