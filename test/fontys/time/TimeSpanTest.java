@@ -190,7 +190,9 @@ public class TimeSpanTest {
     @Test
     public void testIsPartOf(){
         t2 = new TimeSpan2(new Time(2001,1,1,1,1), new Time(2014,1,1,1,1));
+        t3 = new TimeSpan2(new Time(2030,1,1,1,1), new Time(2035,1,1,1,1));
         assertTrue("timespan is not part of bigger timespan", t2.isPartOf(t));
+        assertFalse("timespan is part of wrong timespan", t3.isPartOf(t));
     }
     
     @Test
@@ -217,10 +219,13 @@ public class TimeSpanTest {
         assertEquals("Minutes are not equal", y.getMinutes(), x.getMinutes());
         
         TimeSpan2 t5 = new TimeSpan2(new Time(2014,1,1,1,1), new Time(2016,1,1,1,1));
-        TimeSpan2 t6 = new TimeSpan2(new Time(2018,1,1,1,1), new Time(2020,1,1,1,1));
+        TimeSpan2 t6 = new TimeSpan2(new Time(2018,1,1,1,1), new Time(2021,1,1,1,1));
+        TimeSpan2 t7 = new TimeSpan2(new Time(2019,1,1,1,1), new Time(2020,1,1,1,1));
         
         assertNull("null not returned", (TimeSpan2)t5.unionWith(t6));
         assertNull("null not returned", (TimeSpan2)t6.unionWith(t5));
+        assertNull("null not returned", (TimeSpan2)t6.unionWith(t7));
+        assertNull("null not returned", (TimeSpan2)t7.unionWith(t6));
     }
     
     @Test
@@ -247,9 +252,12 @@ public class TimeSpanTest {
         assertEquals("Minutes are not equal", y.getMinutes(), x.getMinutes());
         
         TimeSpan2 t5 = new TimeSpan2(new Time(2014,1,1,1,1), new Time(2016,1,1,1,1));
-        TimeSpan2 t6 = new TimeSpan2(new Time(2018,1,1,1,1), new Time(2020,1,1,1,1));
+        TimeSpan2 t6 = new TimeSpan2(new Time(2018,1,1,1,1), new Time(2021,1,1,1,1));
+        TimeSpan2 t7 = new TimeSpan2(new Time(2019,1,1,1,1), new Time(2020,1,1,1,1));
         
         assertNull("null not returned", (TimeSpan2)t5.intersectionWith(t6));
         assertNull("null not returned", (TimeSpan2)t6.intersectionWith(t5));
+        assertNull("null not returned", (TimeSpan2)t6.intersectionWith(t7));
+        assertNull("null not returned", (TimeSpan2)t7.intersectionWith(t6));
     }
 }
