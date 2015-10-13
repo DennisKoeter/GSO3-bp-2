@@ -119,6 +119,12 @@ public class TimeTests {
         fail("Creation of Time-object with min < 0 didn't fail");
     }
     
+    @Test(expected=IllegalArgumentException.class)
+    public void testIllegalEverything1() {
+        Time a = new Time(2015,-1,-1,-1,-1);
+        fail("Creation of Time-object with negative month, day, hour and minute didn't fail");
+    }
+    
     @Test
     public void testDayInWeek() {
         //@return the concerning day in the week of this time
